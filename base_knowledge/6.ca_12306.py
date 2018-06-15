@@ -19,6 +19,20 @@ def send_request():
 
     print response.read()
 
+# 方式二 通过设置忽略警告的方式来忽略屏蔽
+import requests
+from requests.packages import urllib3
+
+urllib3.disable_warnings()
+response = requests.get(url, verfy=False)
+
+# 方式三 通过捕获警告日志的方式忽略警告
+import logging
+import requests
+logging.captureWarnings(True)
+response = requests.get(url, verfy=False)
+
+
 
 if __name__ == "__main__":
     send_request()
